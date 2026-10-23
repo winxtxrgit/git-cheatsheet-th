@@ -200,16 +200,16 @@ git tag -d v1.0.0                   # ลบ tag ในเครื่อง
 
 ## 🚑 พังแล้วทำไงดี
 
-<details>
-<summary><b>พิมพ์ commit message ผิด (ยังไม่ push)</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>พิมพ์ commit message ผิด (ยังไม่ push)</b></summary>
 
 ```bash
 git commit --amend -m "ข้อความที่ถูกต้อง"
 ```
 </details>
 
-<details>
-<summary><b>ลืม add ไฟล์ไปหนึ่งไฟล์ใน commit ล่าสุด</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>ลืม add ไฟล์ไปหนึ่งไฟล์ใน commit ล่าสุด</b></summary>
 
 ```bash
 git add ไฟล์ที่ลืม
@@ -217,8 +217,8 @@ git commit --amend --no-edit
 ```
 </details>
 
-<details>
-<summary><b>commit ลง main ไปแล้ว แต่ต้องการให้อยู่ branch ใหม่</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>commit ลง main ไปแล้ว แต่ต้องการให้อยู่ branch ใหม่</b></summary>
 
 ```bash
 git branch feature-ใหม่     # สร้าง branch ที่ชี้ไปยัง commit ปัจจุบัน
@@ -227,8 +227,8 @@ git switch feature-ใหม่     # งานยังอยู่ครบท
 ```
 </details>
 
-<details>
-<summary><b>commit ผิด branch (ต้องย้ายไป branch ที่มีอยู่แล้ว)</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>commit ผิด branch (ต้องย้ายไป branch ที่มีอยู่แล้ว)</b></summary>
 
 ```bash
 git log --oneline -1        # จด hash ของ commit ไว้
@@ -238,8 +238,8 @@ git cherry-pick <hash>      # หยิบ commit มาใส่
 ```
 </details>
 
-<details>
-<summary><b>reset --hard ไปแล้ว งานหาย! 😱</b></summary>
+<details markdown="1">
+<summary markdown="span"><b><code>reset --hard</code> ไปแล้ว งานหาย! 😱</b></summary>
 
 ใจเย็น ๆ Git จำทุกการเคลื่อนไหวของ HEAD ไว้ใน reflog (ประมาณ 90 วัน)
 
@@ -250,8 +250,8 @@ git reset --hard HEAD@{2}   # กลับไปจุดนั้น
 *ใช้ได้กับงานที่เคย commit แล้วเท่านั้น งานที่ไม่เคย commit หรือ stash จะกู้ไม่ได้*
 </details>
 
-<details>
-<summary><b>เผลอ commit ไฟล์ลับ (.env / รหัสผ่าน / API key)</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>เผลอ commit ไฟล์ลับ (.env / รหัสผ่าน / API key)</b></summary>
 
 1. **เปลี่ยน key / รหัสผ่านทันที** ถือว่ารั่วไปแล้ว ถึงจะลบ commit ก็ตาม
 2. เพิ่มไฟล์นั้นใน `.gitignore`
@@ -263,8 +263,8 @@ git reset --hard HEAD@{2}   # กลับไปจุดนั้น
 4. ถ้าต้องลบออกจากประวัติทั้งหมด ใช้ [`git filter-repo`](https://github.com/newren/git-filter-repo) แล้ว force push
 </details>
 
-<details>
-<summary><b>เพิ่มไฟล์ใน .gitignore แล้ว แต่ Git ยังเห็นไฟล์อยู่</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>เพิ่มไฟล์ใน .gitignore แล้ว แต่ Git ยังเห็นไฟล์อยู่</b></summary>
 
 เพราะไฟล์ถูก track ไปก่อนแล้ว ต้องเอาออกจาก index:
 
@@ -274,8 +274,8 @@ git commit -m "chore: apply .gitignore"
 ```
 </details>
 
-<details>
-<summary><b>push ไม่ได้: "rejected ... fetch first"</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>push ไม่ได้: <code>rejected ... fetch first</code></b></summary>
 
 บน remote มี commit ใหม่ที่เครื่องเรายังไม่มี
 
@@ -285,8 +285,8 @@ git push
 ```
 </details>
 
-<details>
-<summary><b>อยากยกเลิก merge ที่ conflict เต็มไปหมด</b></summary>
+<details markdown="1">
+<summary markdown="span"><b>อยากยกเลิก merge ที่ conflict เต็มไปหมด</b></summary>
 
 ```bash
 git merge --abort

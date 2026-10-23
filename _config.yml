@@ -1,6 +1,16 @@
 title: Git Cheat Sheet ภาษาไทย
 description: คำสั่ง Git ที่ใช้ทุกวัน + วิธีแก้สถานการณ์พังที่เจอบ่อย
-theme: jekyll-theme-cayman
 lang: th
+plugins:
+  - jekyll-seo-tag
 kramdown:
   parse_block_html: true
+defaults:
+  - scope:
+      path: "README.md"
+    values:
+      layout: default
+      title: Git Cheat Sheet ภาษาไทย
+      image: /assets/img/og.png
+exclude:
+  - CONTRIBUTING.md
