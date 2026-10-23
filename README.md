@@ -31,6 +31,7 @@
 - [Worktree: เปิดหลาย branch พร้อมกัน](#worktree)
 - [ตั้งค่า SSH key กับ GitHub](#ssh)
 - [.gitignore ที่ใช้บ่อย](#gitignore)
+- [ลงชื่อ commit ให้ขึ้น Verified](#signing)
 
 ---
 
@@ -455,6 +456,23 @@ git config --global core.excludesFile ~/.gitignore_global
 ```
 
 📚 template สำเร็จรูปทุกภาษา: [github/gitignore](https://github.com/github/gitignore)
+
+<a id="signing"></a>
+
+## ✅ ลงชื่อ commit ให้ขึ้น Verified
+
+ใช้ SSH key ที่มีอยู่แล้วเซ็น commit ได้เลย (Git 2.34 ขึ้นไป)
+
+```bash
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+git config --global commit.gpgsign true    # เซ็นทุก commit อัตโนมัติ
+git config --global tag.gpgsign true       # เซ็นทุก tag ด้วย
+```
+
+แล้วเพิ่ม key เดิมอีกครั้งที่ GitHub → **Settings → SSH and GPG keys → New SSH key** โดยเลือก Key type เป็น **Signing Key**
+
+commit ถัดไปบน GitHub จะมีป้าย **Verified** สีเขียว
 
 ---
 
