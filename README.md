@@ -36,6 +36,7 @@
 - [ค้นหาในโค้ดและประวัติ](#search)
 - [Git LFS: ไฟล์ขนาดใหญ่](#lfs)
 - [ปัญหา CRLF / LF (Windows vs Mac)](#line-endings)
+- [checkout แบบเก่า vs switch / restore](#checkout)
 
 ---
 
@@ -552,6 +553,22 @@ git config --global core.autocrlf input
 git add --renormalize .
 git commit -m "chore: normalize line endings"
 ```
+
+<a id="checkout"></a>
+
+## 🔄 checkout แบบเก่า vs switch / restore
+
+`git checkout` ทำหลายหน้าที่จนสับสน Git 2.23 เลยแยกออกเป็น `switch` (เรื่อง branch) กับ `restore` (เรื่องไฟล์)
+
+| แบบเก่า | แบบใหม่ |
+| :--- | :--- |
+| `git checkout main` | `git switch main` |
+| `git checkout -b feature` | `git switch -c feature` |
+| `git checkout -` | `git switch -` |
+| `git checkout <commit>` | `git switch --detach <commit>` |
+| `git checkout -- ไฟล์` | `git restore ไฟล์` |
+| `git reset HEAD ไฟล์` | `git restore --staged ไฟล์` |
+| `git checkout <commit> -- ไฟล์` | `git restore --source <commit> ไฟล์` |
 
 ---
 
