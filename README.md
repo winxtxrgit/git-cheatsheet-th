@@ -27,6 +27,7 @@
 - [Alias ช่วยพิมพ์น้อยลง](#alias)
 - [ศัพท์ที่ควรรู้](#glossary)
 - [Cherry-pick: หยิบ commit มาใส่](#cherry-pick)
+- [Bisect: หาว่า commit ไหนทำพัง](#bisect)
 
 ---
 
@@ -353,6 +354,28 @@ git cherry-pick --abort           # ยกเลิก
 ```
 
 💡 เหมาะกับการเอา bug fix จาก branch หนึ่งไปใส่อีก branch โดยไม่ต้อง merge ทั้งหมด
+
+<a id="bisect"></a>
+
+## 🔎 Bisect: หาว่า commit ไหนทำพัง
+
+Git จะผ่าครึ่งประวัติให้เราทดสอบทีละจุด จนเจอ commit แรกที่มีบั๊ก
+
+```bash
+git bisect start
+git bisect bad                 # commit ปัจจุบันมีบั๊ก
+git bisect good v1.2.0         # เวอร์ชันนี้ยังดีอยู่
+# Git จะ checkout commit ตรงกลางให้ → ทดสอบ แล้วบอกผล
+git bisect good                # หรือ git bisect bad
+# ทำซ้ำจน Git บอกว่า "<hash> is the first bad commit"
+git bisect reset               # กลับไป branch เดิม
+```
+
+ให้ Git รันเทสต์เองอัตโนมัติ (exit code 0 = good, อื่น ๆ = bad):
+
+```bash
+git bisect run npm test
+```
 
 ---
 
