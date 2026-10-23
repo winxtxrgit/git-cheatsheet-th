@@ -28,6 +28,7 @@
 - [ศัพท์ที่ควรรู้](#glossary)
 - [Cherry-pick: หยิบ commit มาใส่](#cherry-pick)
 - [Bisect: หาว่า commit ไหนทำพัง](#bisect)
+- [Worktree: เปิดหลาย branch พร้อมกัน](#worktree)
 
 ---
 
@@ -376,6 +377,22 @@ git bisect reset               # กลับไป branch เดิม
 ```bash
 git bisect run npm test
 ```
+
+<a id="worktree"></a>
+
+## 🌳 Worktree: เปิดหลาย branch พร้อมกัน
+
+ไม่ต้อง stash งานเพื่อสลับ branch ไปแก้บั๊กด่วน ให้เปิด branch อื่นเป็นอีกโฟลเดอร์แทน
+
+```bash
+git worktree add ../hotfix hotfix          # เปิด branch hotfix ในโฟลเดอร์ ../hotfix
+git worktree add -b fix/login ../login     # สร้าง branch ใหม่พร้อมโฟลเดอร์
+git worktree list                          # ดูทั้งหมด
+git worktree remove ../hotfix              # ลบเมื่อเสร็จงาน
+git worktree prune                         # ล้างรายการที่โฟลเดอร์ถูกลบไปแล้ว
+```
+
+⚠️ branch เดียวกันเปิดได้ทีละ worktree เท่านั้น
 
 ---
 
