@@ -30,6 +30,7 @@
 - [Bisect: หาว่า commit ไหนทำพัง](#bisect)
 - [Worktree: เปิดหลาย branch พร้อมกัน](#worktree)
 - [ตั้งค่า SSH key กับ GitHub](#ssh)
+- [.gitignore ที่ใช้บ่อย](#gitignore)
 
 ---
 
@@ -412,6 +413,48 @@ GitHub → **Settings → SSH and GPG keys → New SSH key** → วาง publi
 ssh -T git@github.com                                  # ทดสอบ ต้องขึ้น "Hi <username>!"
 git remote set-url origin git@github.com:<user>/<repo>.git   # เปลี่ยน repo เดิมจาก HTTPS เป็น SSH
 ```
+
+<a id="gitignore"></a>
+
+## 🙈 .gitignore ที่ใช้บ่อย
+
+```gitignore
+# ความลับ
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+dist/
+*.log
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# ระบบปฏิบัติการ / editor
+.DS_Store
+Thumbs.db
+.idea/
+```
+
+| รูปแบบ | ความหมาย |
+| :--- | :--- |
+| `ไฟล์.txt` | ไม่สนไฟล์ชื่อนี้ทุกที่ |
+| `/ไฟล์.txt` | เฉพาะที่ root ของ repo |
+| `โฟลเดอร์/` | ทั้งโฟลเดอร์ |
+| `*.log` | ทุกไฟล์ที่ลงท้าย .log |
+| `!keep.log` | ยกเว้นไฟล์นี้ (ให้ track) |
+
+ตั้ง ignore ส่วนตัวสำหรับทุก repo (เช่น `.DS_Store`):
+
+```bash
+git config --global core.excludesFile ~/.gitignore_global
+```
+
+📚 template สำเร็จรูปทุกภาษา: [github/gitignore](https://github.com/github/gitignore)
 
 ---
 
