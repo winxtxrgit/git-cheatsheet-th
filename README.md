@@ -38,6 +38,7 @@
 - [ปัญหา CRLF / LF (Windows vs Mac)](#line-endings)
 - [checkout แบบเก่า vs switch / restore](#checkout)
 - [Git Hooks: รันสคริปต์อัตโนมัติ](#hooks)
+- [GitHub CLI (gh)](#gh-cli)
 
 ---
 
@@ -595,6 +596,25 @@ chmod +x .git/hooks/pre-commit
 - ข้าม hook ชั่วคราว: `git commit --no-verify` ⚠️
 - `.git/hooks` ไม่ถูก commit ถ้าอยากแชร์ทั้งทีม ให้เก็บใน `.githooks/` แล้วตั้ง `git config core.hooksPath .githooks`
 - หรือใช้เครื่องมือสำเร็จรูป เช่น [Husky](https://typicode.github.io/husky/) (Node.js), [pre-commit](https://pre-commit.com/) (Python)
+
+<a id="gh-cli"></a>
+
+## 🐙 GitHub CLI (gh)
+
+ทำงานกับ GitHub จาก terminal ไม่ต้องเปิดเว็บ ([ติดตั้ง](https://cli.github.com/))
+
+| คำสั่ง | ทำอะไร |
+| :--- | :--- |
+| `gh auth login` | ล็อกอิน |
+| `gh repo clone <user>/<repo>` | clone |
+| `gh repo create ชื่อ --public --source . --push` | สร้าง repo จากโฟลเดอร์ปัจจุบันแล้ว push |
+| `gh repo fork --clone` | fork + clone ในคำสั่งเดียว |
+| `gh pr create --fill` | เปิด PR โดยใช้ commit message เป็นหัวข้อ |
+| `gh pr list` | ดู PR ที่เปิดอยู่ |
+| `gh pr checkout 123` | ดึง PR #123 มาลองในเครื่อง |
+| `gh pr merge --squash --delete-branch` | merge แล้วลบ branch |
+| `gh issue create` / `gh issue list` | สร้าง / ดู issue |
+| `gh browse` | เปิด repo ในเบราว์เซอร์ |
 
 ---
 
