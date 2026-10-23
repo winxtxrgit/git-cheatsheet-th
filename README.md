@@ -12,22 +12,24 @@
 
 ## 📑 สารบัญ
 
-- [ตั้งค่าครั้งแรก](#-ตั้งค่าครั้งแรก)
-- [เริ่มต้น repository](#-เริ่มต้น-repository)
-- [ดูสถานะและประวัติ](#-ดูสถานะและประวัติ)
-- [บันทึกงาน (add / commit)](#-บันทึกงาน-add--commit)
-- [Branch](#-branch)
-- [Merge และ Rebase](#-merge-และ-rebase)
-- [ทำงานกับ Remote (GitHub)](#-ทำงานกับ-remote-github)
-- [ย้อนกลับ / ยกเลิก](#-ย้อนกลับ--ยกเลิก)
-- [Stash: พักงานไว้ก่อน](#-stash-พักงานไว้ก่อน)
-- [Tag](#-tag)
-- [🚑 พังแล้วทำไงดี](#-พังแล้วทำไงดี)
-- [Workflow ส่ง Pull Request](#-workflow-ส่ง-pull-request)
-- [Alias ช่วยพิมพ์น้อยลง](#-alias-ช่วยพิมพ์น้อยลง)
-- [ศัพท์ที่ควรรู้](#-ศัพท์ที่ควรรู้)
+- [ตั้งค่าครั้งแรก](#setup)
+- [เริ่มต้น repository](#init)
+- [ดูสถานะและประวัติ](#status)
+- [บันทึกงาน (add / commit)](#commit)
+- [Branch](#branch)
+- [Merge และ Rebase](#merge)
+- [ทำงานกับ Remote (GitHub)](#remote)
+- [ย้อนกลับ / ยกเลิก](#undo)
+- [Stash: พักงานไว้ก่อน](#stash)
+- [Tag](#tag)
+- [🚑 พังแล้วทำไงดี](#oops)
+- [Workflow ส่ง Pull Request](#pr-workflow)
+- [Alias ช่วยพิมพ์น้อยลง](#alias)
+- [ศัพท์ที่ควรรู้](#glossary)
 
 ---
+
+<a id="setup"></a>
 
 ## ⚙️ ตั้งค่าครั้งแรก
 
@@ -40,6 +42,8 @@ git config --global pull.rebase false               # git pull แบบ merge (
 git config --list                                   # ดูค่าที่ตั้งไว้ทั้งหมด
 ```
 
+<a id="init"></a>
+
 ## 📦 เริ่มต้น repository
 
 | คำสั่ง | ทำอะไร |
@@ -48,6 +52,8 @@ git config --list                                   # ดูค่าที่�
 | `git clone <url>` | ดาวน์โหลด repo จาก GitHub มาทั้งก้อน |
 | `git clone <url> ชื่อโฟลเดอร์` | clone แล้วตั้งชื่อโฟลเดอร์เอง |
 | `git clone --depth 1 <url>` | clone แค่ commit ล่าสุด (เร็ว เหมาะกับ repo ใหญ่) |
+
+<a id="status"></a>
 
 ## 🔍 ดูสถานะและประวัติ
 
@@ -62,6 +68,8 @@ git config --list                                   # ดูค่าที่�
 | `git show <commit>` | ดูรายละเอียด commit นั้น |
 | `git blame <ไฟล์>` | ดูว่าแต่ละบรรทัดใครแก้ล่าสุด |
 
+<a id="commit"></a>
+
 ## 💾 บันทึกงาน (add / commit)
 
 ```bash
@@ -74,6 +82,8 @@ git commit --amend        # แก้ commit ล่าสุด (ข้อคว
 ```
 
 💡 **เขียน commit message ให้ดี:** ใช้รูปแบบ [Conventional Commits](https://www.conventionalcommits.org/) เช่น `feat: เพิ่มหน้า login`, `fix: แก้ปุ่มกดไม่ได้บนมือถือ`, `docs: อัปเดต README`
+
+<a id="branch"></a>
 
 ## 🌿 Branch
 
@@ -89,6 +99,8 @@ git commit --amend        # แก้ commit ล่าสุด (ข้อคว
 | `git branch -D <branch>` | ลบ branch แบบบังคับ ⚠️ |
 
 > `git checkout` ใช้แทน `switch` ได้ แต่ `switch` / `restore` เป็นคำสั่งรุ่นใหม่ที่แยกหน้าที่ชัดกว่า อ่านง่ายกว่า
+
+<a id="merge"></a>
 
 ## 🔀 Merge และ Rebase
 
@@ -110,6 +122,8 @@ git rebase -i HEAD~3        # รวม/แก้/ลบ 3 commit ล่าส�
 
 ⚠️ **กฎทอง:** อย่า rebase branch ที่ push ขึ้นไปแล้วและมีคนอื่นใช้ร่วมด้วย
 
+<a id="remote"></a>
+
 ## ☁️ ทำงานกับ Remote (GitHub)
 
 | คำสั่ง | ทำอะไร |
@@ -123,6 +137,8 @@ git rebase -i HEAD~3        # รวม/แก้/ลบ 3 commit ล่าส�
 | `git pull --rebase` | fetch + rebase (ไม่เกิด merge commit) |
 | `git push --force-with-lease` | force push แบบปลอดภัยกว่า `--force` |
 | `git push origin --delete <branch>` | ลบ branch บน GitHub |
+
+<a id="undo"></a>
 
 ## ⏪ ย้อนกลับ / ยกเลิก
 
@@ -138,6 +154,8 @@ git rebase -i HEAD~3        # รวม/แก้/ลบ 3 commit ล่าส�
 
 > **reset vs revert:** `reset` = ลบ commit ออกจากประวัติ (ใช้กับงานที่ยังไม่ push) / `revert` = สร้าง commit ใหม่ที่หักล้างของเดิม (ใช้กับงานที่ push แล้ว)
 
+<a id="stash"></a>
+
 ## 📥 Stash: พักงานไว้ก่อน
 
 ```bash
@@ -150,6 +168,8 @@ git stash apply stash@{1} # เอากลับมาแต่ไม่ลบ
 git stash drop stash@{0}  # ลบ stash นั้น
 ```
 
+<a id="tag"></a>
+
 ## 🏷️ Tag
 
 ```bash
@@ -161,6 +181,8 @@ git tag -d v1.0.0                   # ลบ tag ในเครื่อง
 ```
 
 ---
+
+<a id="oops"></a>
 
 ## 🚑 พังแล้วทำไงดี
 
@@ -259,6 +281,8 @@ git merge --abort
 
 ---
 
+<a id="pr-workflow"></a>
+
 ## 🔁 Workflow ส่ง Pull Request
 
 ```bash
@@ -280,6 +304,8 @@ git push -u origin fix/แก้อะไรสักอย่าง
 gh pr create --fill
 ```
 
+<a id="alias"></a>
+
 ## ⌨️ Alias ช่วยพิมพ์น้อยลง
 
 ```bash
@@ -291,6 +317,8 @@ git config --global alias.undo "reset --soft HEAD~1"
 ```
 
 ใช้งาน: `git st`, `git lg`, `git undo`
+
+<a id="glossary"></a>
 
 ## 📖 ศัพท์ที่ควรรู้
 
