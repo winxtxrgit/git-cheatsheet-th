@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'th' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b14">
+  <meta name="color-scheme" content="dark">
+  {% seo %}
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+</head>
+<body>
+  <a class="skip-link" href="#doc">ข้ามไปที่เนื้อหา</a>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="Git Cheat Sheet ภาษาไทย หน้าแรก">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7"/><path d="M18 10.5c0 4-6 3.5-11 6"/></svg>
+        </span>
+        <span class="brand-text">Git Cheat Sheet <span class="brand-tag">TH</span></span>
+      </a>
+
+      <div class="search" role="search">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="sr-only" for="search-input">ค้นหาคำสั่งหรือคำอธิบาย</label>
+        <input id="search-input" type="search" placeholder="ค้นหาคำสั่ง เช่น reset, stash, ลบ branch" autocomplete="off" spellcheck="false">
+        <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn toc-toggle" type="button" aria-controls="toc" aria-expanded="false">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          <span class="sr-only">เปิดสารบัญ</span>
+        </button>
+        <a class="star-btn" href="https://github.com/{{ site.github.repository_nwo | default: 'winxtxrgit/git-cheatsheet-th' }}" rel="noopener" aria-label="กด Star ให้ repo นี้บน GitHub">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+          <span class="star-label">Star</span>
+          <span class="star-count" id="star-count" hidden></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">คู่มือพกพา · ภาษาไทย · ใช้ฟรี</p>
+        <h1><span class="grad">Git</span> Cheat Sheet<br>ภาษาไทย</h1>
+        <p class="lead">{{ site.description }} อธิบายสั้น อ่านจบไว ก๊อปไปใช้ได้ทันที</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#setup">เริ่มอ่าน</a>
+          <a class="btn btn-ghost" href="#oops">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+            พังแล้วทำไงดี?
+          </a>
+        </div>
+        <ul class="stats" aria-label="สรุปเนื้อหา">
+          <li><strong id="stat-sections">28</strong><span>หัวข้อ</span></li>
+          <li><strong id="stat-commands">200+</strong><span>คำสั่ง</span></li>
+          <li><strong id="stat-fixes">9</strong><span>วิธีแก้ตอนพัง</span></li>
+        </ul>
+      </div>
+
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar"><i></i><i></i><i></i><span>~/my-project</span></div>
+        <pre><span class="t-p">$</span> git switch -c feature/login
+<span class="t-o">Switched to a new branch 'feature/login'</span>
+<span class="t-p">$</span> git add . &amp;&amp; git commit -m <span class="t-s">"feat: หน้า login"</span>
+<span class="t-o">[feature/login 3f2a9c1] feat: หน้า login</span>
+<span class="t-p">$</span> git push -u origin HEAD
+<span class="t-ok">✓ พร้อมเปิด Pull Request</span>
+<span class="t-p">$</span> <span class="cursor"></span></pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav class="toc" id="toc" aria-label="สารบัญ">
+      <div class="toc-head">
+        <span>สารบัญ</span>
+        <button class="icon-btn toc-close" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          <span class="sr-only">ปิดสารบัญ</span>
+        </button>
+      </div>
+      <ol id="toc-list"></ol>
+    </nav>
+    <div class="toc-backdrop" hidden></div>
+
+    <main class="doc" id="doc" tabindex="-1">
+      <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+      {%- assign marker = '<p><a id="setup"></a></p>' -%}
+      {%- assign parts = content | split: marker -%}
+      {%- if parts.size > 1 -%}
+        {{ marker }}{{ parts | shift | join: marker }}
+      {%- else -%}
+        {{ content }}
+      {%- endif -%}
+      <div class="empty" id="empty-state" hidden>
+        <p>ไม่พบคำสั่งที่ตรงกับ “<span id="empty-query"></span>”</p>
+        <p>ลองคำอื่น หรือ <a href="https://github.com/{{ site.github.repository_nwo | default: 'winxtxrgit/git-cheatsheet-th' }}/discussions/categories/q-a" rel="noopener">ถามใน Discussions</a></p>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-title">มีคำถามเรื่อง Git หรืออยากเพิ่มเนื้อหา?</p>
+        <p class="footer-text">ถามได้ใน Discussions หรือส่ง Pull Request มาได้เลย ทุกการแก้ไขช่วยให้คนเริ่มต้นเรียน Git ได้ง่ายขึ้น</p>
+      </div>
+      <div class="footer-links">
+        <a class="btn btn-ghost" href="https://github.com/{{ site.github.repository_nwo | default: 'winxtxrgit/git-cheatsheet-th' }}/discussions/categories/q-a" rel="noopener">ถามใน Q&amp;A</a>
+        <a class="btn btn-ghost" href="https://github.com/{{ site.github.repository_nwo | default: 'winxtxrgit/git-cheatsheet-th' }}/blob/main/CONTRIBUTING.md" rel="noopener">วิธีร่วมพัฒนา</a>
+      </div>
+    </div>
+    <p class="footer-meta">MIT License · นำไปใช้ แจก หรือพิมพ์แปะผนังได้ตามสบาย · โดย <a href="https://github.com/winxtxrgit" rel="noopener">@winxtxrgit</a></p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="กลับขึ้นด้านบน" hidden>
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>
