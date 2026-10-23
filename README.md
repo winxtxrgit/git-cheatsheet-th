@@ -26,6 +26,7 @@
 - [Workflow ส่ง Pull Request](#pr-workflow)
 - [Alias ช่วยพิมพ์น้อยลง](#alias)
 - [ศัพท์ที่ควรรู้](#glossary)
+- [Cherry-pick: หยิบ commit มาใส่](#cherry-pick)
 
 ---
 
@@ -336,6 +337,22 @@ git config --global alias.undo "reset --soft HEAD~1"
 | **Rebase** | ย้าย commit ไปต่อบนฐานใหม่ |
 | **Fork** | สำเนา repo คนอื่นมาไว้ในบัญชีเรา |
 | **Pull Request (PR)** | คำขอให้เจ้าของ repo รวมโค้ดของเรา |
+
+<a id="cherry-pick"></a>
+
+## 🍒 Cherry-pick: หยิบ commit มาใส่
+
+```bash
+git cherry-pick <hash>            # หยิบ commit เดียวมาใส่ branch ปัจจุบัน
+git cherry-pick <hash1> <hash2>   # หลาย commit
+git cherry-pick A^..B             # ช่วง commit ตั้งแต่ A ถึง B (รวม A)
+git cherry-pick -x <hash>         # ใส่หมายเหตุว่าหยิบมาจาก commit ไหน
+git cherry-pick -n <hash>         # เอาแค่การแก้ไข ยังไม่ commit
+git cherry-pick --continue        # หลังแก้ conflict เสร็จ
+git cherry-pick --abort           # ยกเลิก
+```
+
+💡 เหมาะกับการเอา bug fix จาก branch หนึ่งไปใส่อีก branch โดยไม่ต้อง merge ทั้งหมด
 
 ---
 
