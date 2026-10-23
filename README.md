@@ -37,6 +37,7 @@
 - [Git LFS: ไฟล์ขนาดใหญ่](#lfs)
 - [ปัญหา CRLF / LF (Windows vs Mac)](#line-endings)
 - [checkout แบบเก่า vs switch / restore](#checkout)
+- [Git Hooks: รันสคริปต์อัตโนมัติ](#hooks)
 
 ---
 
@@ -569,6 +570,31 @@ git commit -m "chore: normalize line endings"
 | `git checkout -- ไฟล์` | `git restore ไฟล์` |
 | `git reset HEAD ไฟล์` | `git restore --staged ไฟล์` |
 | `git checkout <commit> -- ไฟล์` | `git restore --source <commit> ไฟล์` |
+
+<a id="hooks"></a>
+
+## 🪝 Git Hooks: รันสคริปต์อัตโนมัติ
+
+ตัวอย่าง: รันเทสต์ก่อน commit ทุกครั้ง สร้างไฟล์ `.git/hooks/pre-commit`
+
+```bash
+#!/bin/sh
+npm test || exit 1
+```
+
+```bash
+chmod +x .git/hooks/pre-commit
+```
+
+| hook | ทำงานตอน |
+| :--- | :--- |
+| `pre-commit` | ก่อน commit (lint, format, test) |
+| `commit-msg` | ตรวจรูปแบบ commit message |
+| `pre-push` | ก่อน push |
+
+- ข้าม hook ชั่วคราว: `git commit --no-verify` ⚠️
+- `.git/hooks` ไม่ถูก commit ถ้าอยากแชร์ทั้งทีม ให้เก็บใน `.githooks/` แล้วตั้ง `git config core.hooksPath .githooks`
+- หรือใช้เครื่องมือสำเร็จรูป เช่น [Husky](https://typicode.github.io/husky/) (Node.js), [pre-commit](https://pre-commit.com/) (Python)
 
 ---
 
