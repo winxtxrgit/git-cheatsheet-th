@@ -34,6 +34,7 @@
 - [ลงชื่อ commit ให้ขึ้น Verified](#signing)
 - [Submodule: repo ซ้อน repo](#submodule)
 - [ค้นหาในโค้ดและประวัติ](#search)
+- [Git LFS: ไฟล์ขนาดใหญ่](#lfs)
 
 ---
 
@@ -505,6 +506,23 @@ git submodule status                              # ดูว่าแต่ล�
 | `git log --since="2 weeks ago"` | commit ในช่วง 2 สัปดาห์ |
 | `git log --follow -- <ไฟล์>` | ประวัติไฟล์ แม้เคยถูกเปลี่ยนชื่อ |
 | `git log -L 10,20:<ไฟล์>` | ประวัติเฉพาะบรรทัด 10–20 |
+
+<a id="lfs"></a>
+
+## 🐘 Git LFS: ไฟล์ขนาดใหญ่
+
+GitHub ไม่รับไฟล์เกิน 100 MB ไฟล์ใหญ่อย่างวิดีโอ, PSD, โมเดล ML ควรใช้ Git LFS
+
+```bash
+git lfs install                  # ครั้งแรกต่อเครื่อง
+git lfs track "*.psd"            # ให้ LFS ดูแลไฟล์ .psd
+git add .gitattributes           # ต้อง commit ไฟล์นี้ด้วย
+git add design.psd
+git commit -m "feat: add design file"
+git lfs ls-files                 # ดูไฟล์ที่อยู่ใน LFS
+```
+
+⚠️ ไฟล์ที่ commit ไปก่อน `track` จะไม่ย้ายเข้า LFS เอง ต้องใช้ `git lfs migrate`
 
 ---
 
