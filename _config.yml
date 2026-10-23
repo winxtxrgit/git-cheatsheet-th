@@ -4,5 +4,3 @@ theme: jekyll-theme-cayman
 lang: th
 kramdown:
   parse_block_html: true
-exclude:
-  - CONTRIBUTING.md
