@@ -29,6 +29,7 @@
 - [Cherry-pick: หยิบ commit มาใส่](#cherry-pick)
 - [Bisect: หาว่า commit ไหนทำพัง](#bisect)
 - [Worktree: เปิดหลาย branch พร้อมกัน](#worktree)
+- [ตั้งค่า SSH key กับ GitHub](#ssh)
 
 ---
 
@@ -393,6 +394,24 @@ git worktree prune                         # ล้างรายการท�
 ```
 
 ⚠️ branch เดียวกันเปิดได้ทีละ worktree เท่านั้น
+
+<a id="ssh"></a>
+
+## 🔑 ตั้งค่า SSH key กับ GitHub
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"   # สร้าง key (กด Enter ตามค่าเริ่มต้นได้)
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub                     # คัดลอกไปวางที่ GitHub
+```
+
+GitHub → **Settings → SSH and GPG keys → New SSH key** → วาง public key (ไฟล์ `.pub` เท่านั้น ❌ ห้ามแชร์ไฟล์ที่ไม่มี .pub)
+
+```bash
+ssh -T git@github.com                                  # ทดสอบ ต้องขึ้น "Hi <username>!"
+git remote set-url origin git@github.com:<user>/<repo>.git   # เปลี่ยน repo เดิมจาก HTTPS เป็น SSH
+```
 
 ---
 
