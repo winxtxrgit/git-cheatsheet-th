@@ -35,6 +35,7 @@
 - [Submodule: repo ซ้อน repo](#submodule)
 - [ค้นหาในโค้ดและประวัติ](#search)
 - [Git LFS: ไฟล์ขนาดใหญ่](#lfs)
+- [ปัญหา CRLF / LF (Windows vs Mac)](#line-endings)
 
 ---
 
@@ -523,6 +524,34 @@ git lfs ls-files                 # ดูไฟล์ที่อยู่ใน
 ```
 
 ⚠️ ไฟล์ที่ commit ไปก่อน `track` จะไม่ย้ายเข้า LFS เอง ต้องใช้ `git lfs migrate`
+
+<a id="line-endings"></a>
+
+## ↩️ ปัญหา CRLF / LF (Windows vs Mac)
+
+อาการ: เปิดไฟล์เฉย ๆ ไม่ได้แก้อะไร แต่ Git บอกว่าเปลี่ยนทั้งไฟล์
+
+```bash
+# Windows
+git config --global core.autocrlf true
+# macOS / Linux
+git config --global core.autocrlf input
+```
+
+วิธีที่ดีที่สุดคือกำหนดใน repo ให้ทุกคนเหมือนกัน สร้างไฟล์ `.gitattributes`:
+
+```gitattributes
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+```
+
+แล้วปรับไฟล์เดิมให้ตรงกฎ:
+
+```bash
+git add --renormalize .
+git commit -m "chore: normalize line endings"
+```
 
 ---
 
