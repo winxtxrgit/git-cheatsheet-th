@@ -1,0 +1,8 @@
+title: Git Cheat Sheet ภาษาไทย
+description: คำสั่ง Git ที่ใช้ทุกวัน + วิธีแก้สถานการณ์พังที่เจอบ่อย
+theme: jekyll-theme-cayman
+lang: th
+kramdown:
+  parse_block_html: true
+exclude:
+  - CONTRIBUTING.md
