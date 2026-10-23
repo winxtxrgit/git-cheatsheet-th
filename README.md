@@ -3,7 +3,7 @@
 > รวมคำสั่ง Git ที่ใช้จริงทุกวัน อธิบายเป็นภาษาไทยสั้น ๆ พร้อมวิธีแก้สถานการณ์ "พังแล้วทำไงดี" ที่เจอบ่อยที่สุด
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/winxtxrgit/git-cheatsheet-th/blob/main/CONTRIBUTING.md)
 ![ภาษา](https://img.shields.io/badge/ภาษา-ไทย-blue)
 
 ถ้ามีประโยชน์ ฝากกด ⭐ ให้ด้วยนะครับ จะได้ส่งต่อถึงเพื่อน ๆ ที่เพิ่งเริ่มใช้ Git
@@ -341,7 +341,7 @@ git config --global alias.undo "reset --soft HEAD~1"
 
 ## 🤝 ร่วมพัฒนา
 
-เจอคำสั่งที่ผิด อธิบายไม่ชัด หรืออยากเพิ่มสถานการณ์ "พังแล้วทำไงดี" ใหม่ ๆ เปิด Issue หรือส่ง PR มาได้เลย ดู [CONTRIBUTING.md](CONTRIBUTING.md)
+เจอคำสั่งที่ผิด อธิบายไม่ชัด หรืออยากเพิ่มสถานการณ์ "พังแล้วทำไงดี" ใหม่ ๆ เปิด Issue หรือส่ง PR มาได้เลย ดู [CONTRIBUTING.md](https://github.com/winxtxrgit/git-cheatsheet-th/blob/main/CONTRIBUTING.md)
 
 ## 📄 License
 
