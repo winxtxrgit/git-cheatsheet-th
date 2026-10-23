@@ -32,6 +32,7 @@
 - [ตั้งค่า SSH key กับ GitHub](#ssh)
 - [.gitignore ที่ใช้บ่อย](#gitignore)
 - [ลงชื่อ commit ให้ขึ้น Verified](#signing)
+- [Submodule: repo ซ้อน repo](#submodule)
 
 ---
 
@@ -473,6 +474,20 @@ git config --global tag.gpgsign true       # เซ็นทุก tag ด้ว
 แล้วเพิ่ม key เดิมอีกครั้งที่ GitHub → **Settings → SSH and GPG keys → New SSH key** โดยเลือก Key type เป็น **Signing Key**
 
 commit ถัดไปบน GitHub จะมีป้าย **Verified** สีเขียว
+
+<a id="submodule"></a>
+
+## 📦 Submodule: repo ซ้อน repo
+
+```bash
+git submodule add <url> libs/ชื่อ                 # เพิ่ม repo อื่นเข้ามาเป็นโฟลเดอร์ย่อย
+git clone --recurse-submodules <url>              # clone พร้อม submodule
+git submodule update --init --recursive           # clone มาแล้วแต่โฟลเดอร์ว่าง ใช้คำสั่งนี้
+git submodule update --remote                     # อัปเดต submodule เป็น commit ล่าสุดของ remote
+git submodule status                              # ดูว่าแต่ละตัวชี้ commit ไหน
+```
+
+💡 submodule ล็อกไว้ที่ commit หนึ่งเสมอ อัปเดตแล้วอย่าลืม `git add` + `git commit` ที่ repo หลักด้วย
 
 ---
 
