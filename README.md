@@ -39,6 +39,7 @@
 - [checkout แบบเก่า vs switch / restore](#checkout)
 - [Git Hooks: รันสคริปต์อัตโนมัติ](#hooks)
 - [GitHub CLI (gh)](#gh-cli)
+- [Conventional Commits แบบละเอียด](#conventional)
 
 ---
 
@@ -615,6 +616,28 @@ chmod +x .git/hooks/pre-commit
 | `gh pr merge --squash --delete-branch` | merge แล้วลบ branch |
 | `gh issue create` / `gh issue list` | สร้าง / ดู issue |
 | `gh browse` | เปิด repo ในเบราว์เซอร์ |
+
+<a id="conventional"></a>
+
+## 📝 Conventional Commits แบบละเอียด
+
+รูปแบบ: `<type>(<scope>): <คำอธิบาย>` เช่น `fix(auth): แก้ token หมดอายุเร็วเกินไป`
+
+| type | ใช้เมื่อ |
+| :--- | :--- |
+| `feat` | เพิ่มฟีเจอร์ใหม่ |
+| `fix` | แก้บั๊ก |
+| `docs` | แก้เอกสารอย่างเดียว |
+| `style` | จัดรูปแบบโค้ด ไม่กระทบการทำงาน |
+| `refactor` | ปรับโครงสร้างโค้ด ไม่ใช่ฟีเจอร์หรือบั๊ก |
+| `perf` | ทำให้เร็วขึ้น |
+| `test` | เพิ่ม/แก้เทสต์ |
+| `build` | ระบบ build หรือ dependency |
+| `ci` | ตั้งค่า CI |
+| `chore` | งานจุกจิกอื่น ๆ |
+| `revert` | ย้อน commit ก่อนหน้า |
+
+การเปลี่ยนแปลงที่ทำให้ของเดิมพัง (breaking change) ให้ใส่ `!` เช่น `feat!: เปลี่ยนรูปแบบ API`
 
 ---
 
