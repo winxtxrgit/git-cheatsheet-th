@@ -643,6 +643,8 @@ chmod +x .git/hooks/pre-commit
 
 ## 🤝 ร่วมพัฒนา
 
+💬 **มีคำถามเรื่อง Git?** ถามได้ที่ [Discussions → Q&A](https://github.com/winxtxrgit/git-cheatsheet-th/discussions/categories/q-a)
+
 เจอคำสั่งที่ผิด อธิบายไม่ชัด หรืออยากเพิ่มสถานการณ์ "พังแล้วทำไงดี" ใหม่ ๆ เปิด Issue หรือส่ง PR มาได้เลย ดู [CONTRIBUTING.md](https://github.com/winxtxrgit/git-cheatsheet-th/blob/main/CONTRIBUTING.md)
 
 ## 📄 License
