@@ -33,6 +33,7 @@
 - [.gitignore ที่ใช้บ่อย](#gitignore)
 - [ลงชื่อ commit ให้ขึ้น Verified](#signing)
 - [Submodule: repo ซ้อน repo](#submodule)
+- [ค้นหาในโค้ดและประวัติ](#search)
 
 ---
 
@@ -488,6 +489,22 @@ git submodule status                              # ดูว่าแต่ล�
 ```
 
 💡 submodule ล็อกไว้ที่ commit หนึ่งเสมอ อัปเดตแล้วอย่าลืม `git add` + `git commit` ที่ repo หลักด้วย
+
+<a id="search"></a>
+
+## 🕵️ ค้นหาในโค้ดและประวัติ
+
+| คำสั่ง | ทำอะไร |
+| :--- | :--- |
+| `git grep "คำ"` | ค้นในไฟล์ที่ Git track (เร็วกว่า grep ทั่วไป) |
+| `git grep -n "คำ" <commit>` | ค้นใน commit เก่า พร้อมเลขบรรทัด |
+| `git log -S "คำ"` | หา commit ที่ทำให้ "คำ" นี้ถูกเพิ่มหรือลบ |
+| `git log -G "regex"` | หา commit ที่แก้บรรทัดที่ตรง regex |
+| `git log --grep="fix"` | ค้นจาก commit message |
+| `git log --author="ชื่อ"` | commit ของคนนี้ |
+| `git log --since="2 weeks ago"` | commit ในช่วง 2 สัปดาห์ |
+| `git log --follow -- <ไฟล์>` | ประวัติไฟล์ แม้เคยถูกเปลี่ยนชื่อ |
+| `git log -L 10,20:<ไฟล์>` | ประวัติเฉพาะบรรทัด 10–20 |
 
 ---
 
